@@ -65,10 +65,50 @@ var Shipments = (function (_super) {
                 switch (_a.label) {
                     case 0:
                         query = this.buildQueryStringFromParams(opts);
-                        url = this.baseUrl + query;
+                        url = "" + this.baseUrl + query;
                         return [4, this.shipstation.request({
                                 url: url,
                                 method: shipstation_1.RequestMethod.GET
+                            })];
+                    case 1:
+                        response = _a.sent();
+                        return [2, response.data];
+                }
+            });
+        });
+    };
+    Shipments.prototype.createLabel = function (labelObject) {
+        return __awaiter(this, void 0, void 0, function () {
+            var query, url, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        query = this.buildQueryStringFromParams({});
+                        url = this.baseUrl + "/createlabel" + query;
+                        return [4, this.shipstation.request({
+                                url: url,
+                                method: shipstation_1.RequestMethod.POST,
+                                data: labelObject
+                            })];
+                    case 1:
+                        response = _a.sent();
+                        return [2, response.data];
+                }
+            });
+        });
+    };
+    Shipments.prototype.voidShipment = function (shipment) {
+        return __awaiter(this, void 0, void 0, function () {
+            var query, url, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        query = this.buildQueryStringFromParams({});
+                        url = this.baseUrl + "/voidlabel" + query;
+                        return [4, this.shipstation.request({
+                                url: url,
+                                method: shipstation_1.RequestMethod.POST,
+                                data: shipment
                             })];
                     case 1:
                         response = _a.sent();

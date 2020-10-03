@@ -17,8 +17,10 @@ var RequestMethod;
     RequestMethod["DELETE"] = "DELETE";
 })(RequestMethod = exports.RequestMethod || (exports.RequestMethod = {}));
 var Shipstation = (function () {
-    function Shipstation() {
+    function Shipstation(key, secret) {
         var _this = this;
+        if (key === void 0) { key = process.env.SS_API_KEY; }
+        if (secret === void 0) { secret = process.env.SS_API_SECRET; }
         this.baseUrl = 'https://ssapi.shipstation.com/';
         this.request = function (_a) {
             var url = _a.url, method = _a.method, _b = _a.useBaseUrl, useBaseUrl = _b === void 0 ? true : _b, data = _a.data;
@@ -34,8 +36,8 @@ var Shipstation = (function () {
             }
             return axios_1.default.request(opts);
         };
-        if (!process.env.SS_API_KEY || !process.env.SS_API_SECRET) {
-            throw new Error("APIKey and API Secret are required! Provided API Key: " + process.env.SS_API_KEY + " API Secret: " + process.env.SS_API_SECRET);
+        if (!key || !secret) {
+            throw new Error("APIKey and API Secret are required! Provided API Key: " + key + " API Secret: " + secret + " either in ctor or through environment variables SS_API_KEY and SS_API_SECRET");
         }
         this.authorizationToken = base64.encode(process.env.SS_API_KEY + ":" + process.env.SS_API_SECRET);
         this.request = stopcock(this.request, rateLimitOpts);

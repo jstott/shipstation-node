@@ -27,11 +27,11 @@ export default class Shipstation {
   public authorizationToken: string
   private baseUrl: string = 'https://ssapi.shipstation.com/'
 
-  constructor() {
-    if (!process.env.SS_API_KEY || !process.env.SS_API_SECRET) {
+  constructor(key = process.env.SS_API_KEY, secret = process.env.SS_API_SECRET ) {
+    if (!key || !secret) {
       // tslint:disable-next-line:no-console
       throw new Error(
-        `APIKey and API Secret are required! Provided API Key: ${process.env.SS_API_KEY} API Secret: ${process.env.SS_API_SECRET}`
+        `APIKey and API Secret are required! Provided API Key: ${key} API Secret: ${secret} either in ctor or through environment variables SS_API_KEY and SS_API_SECRET`
       )
     }
 

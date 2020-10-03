@@ -17,4 +17,4 @@ export interface IStore {
   modifyDate: string
   autoRefresh: boolean
   statusMappings: Array<{ orderStatus: string; statusKey: string }> | null
-}
+};

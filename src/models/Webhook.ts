@@ -16,18 +16,18 @@ export interface IWebhook {
   BulkCopyBatchID: number | null
   BulkCopyRecordID: number | null
   Active: boolean
-}
+};
 
 export interface IWebhookResult {
   webhooks: IWebhook[]
-}
+};
 
 export interface ISubscribeToWebhookOpts {
   target_url: string
   event: WebhookEventType
   store_id?: number
   friendly_name: string
-}
+};
 
 export interface ISubscriptionResponse {
   id: number
